@@ -6,6 +6,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -38,9 +40,13 @@ func main() {
 	jobListings, _ := getJobListings(ctx)
 
 	log.Info("Converting Job Listings to JSON")
-	jobListingsJSON, _ := json.Marshal(jobListings)
+	jobListingsString, _ := json.Marshal(jobListings)
 
-	log.Info(fmt.Sprintf("Got Result: %v", string(jobListingsJSON)))
+	log.Info(fmt.Sprintf("Got Result: %v", string(jobListingsString)))
+
+	filename := "output.json"
+	ioutil.WriteFile(filename, jobListingsString, os.ModePerm)
+
 }
 
 
