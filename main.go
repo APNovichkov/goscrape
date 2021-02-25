@@ -46,7 +46,6 @@ func main() {
 
 	filename := "output.json"
 	ioutil.WriteFile(filename, jobListingsString, os.ModePerm)
-
 }
 
 
